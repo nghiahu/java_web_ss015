@@ -145,6 +145,10 @@ public class ProductController {
         model.addAttribute("order", new Order());
         return "checkout";
     }
-
+    @PostMapping("checkout")
+    public String processOrder(@ModelAttribute("order") Order order) {
+        order.setIdUser(1);
+        return "redirect:/listProduct";
+    }
 }
 
