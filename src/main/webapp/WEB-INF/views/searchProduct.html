@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="search" method="post" th:object="${product}">
+        <label>Tìm kiếm sản phẩm</label>
+        <input type="text" id="name" th:field="*{name}" required>
+        <input type="submit" value="Tìm kiềm">
+    </form>
+
+    <table border="1" th:if="${productFind}">
+        <tr>
+            <th>Id</th>
+            <th>Tên</th>
+            <th>Mô tả</th>
+            <th>Giá</th>
+        </tr>
+        <tr>
+            <td th:text="${productFind.id}">Id</td>
+            <td th:text="${productFind.name}">Id</td>
+            <td th:text="${productFind.description}">Id</td>
+            <td th:text="${productFind.price}">Id</td>
+        </tr>
+    </table>
+    <h1 th:if="${message}" th:text="${message}"></h1>
+</body>
+</html>

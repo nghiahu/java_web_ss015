@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Class</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>PhoneNumber</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="obj, loop : ${students}">
+            <td th:text="${obj.id}"></td>
+            <td th:text="${obj.name}"></td>
+            <td th:text="${obj.age}"></td>
+            <td th:text="${obj.classes}"></td>
+            <td th:text="${obj.email}"></td>
+            <td th:text="${obj.address}"></td>
+            <td th:text="${obj.phone}"></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

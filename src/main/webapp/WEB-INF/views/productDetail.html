@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .conten{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+</style>
+<body>
+    <h4>Chi tiết sản phẩm</h4>
+    <div class="conten">
+        <b>ID:</b>
+        <p th:text="${productFind.id}"></p>
+    </div>
+    <div class="conten">
+        <b>Tên sản phẩm:</b>
+        <p th:text="${productFind.name}"></p>
+    </div>
+    <div class="conten">
+        <b>Mô tả:</b>
+        <p th:text="${productFind.description}"></p>
+    </div>
+    <div class="conten">
+        <b>Giá:</b>
+        <p th:text="${productFind.price}"></p>
+    </div>
+
+    <form th:action="@{/addToCart}" method="post">
+        <input type="hidden" name="productId" th:value="${productFind.id}" />
+        <button type="submit" onclick="alert('Đã thêm sản phẩm vào giỏ hàng!')">Thêm vào giỏ hàng</button>
+    </form>
+
+    <a th:href="@{'/review?id=' + ${productFind.id}}">Review</a>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Rating</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="obj, loop : ${reviews}">
+            <td th:text="${obj.userId}">user</td>
+            <td th:text="${obj.rating}">user</td>
+            <td th:text="${obj.comment}">user</td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

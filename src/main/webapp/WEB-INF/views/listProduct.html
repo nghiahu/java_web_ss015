@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Mô tả</th>
+                <th>Giá</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="obj, loop : ${products}">
+                <td th:text="${obj.id}">Id</td>
+                <td th:text="${obj.name}">Id</td>
+                <td th:text="${obj.description}">Id</td>
+                <td th:text="${obj.price}">Id</td>
+                <td>
+                    <a th:href="@{'/productDetail?id=' + ${obj.id}}">Detail</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

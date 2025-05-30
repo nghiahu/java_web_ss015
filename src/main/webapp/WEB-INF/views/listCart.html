@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Danh sách giỏ hàng</h3>
+<table border="1">
+  <tr>
+    <th>Tên sản phẩm</th>
+    <th>Giá</th>
+    <th>Số lượng</th>
+    <th>Thành tiền</th>
+  </tr>
+  <tr th:each="item : ${cartItems}">
+    <td th:text="${item.name}">Tên</td>
+    <td th:text="${item.price}">Giá</td>
+    <td th:text="${item.quantity}">SL</td>
+    <td th:text="${item.subtotal}">Tiền</td>
+  </tr>
+</table>
+<h4>Tổng tiền: <span th:text="${total}"></span> đ</h4> <br>
+<a href="/checkout"><button type="button">Tiến hành đặt hàng</button></a>
+<a href="listProduct">ListProduct</a>
+</body>
+</html>
