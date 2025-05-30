@@ -10,6 +10,7 @@
 <a href="registerUser">Bài 3</a> <br>
 <a href="home">Bài 4</a> <br>
 <a href="searchProduct">Bài 5</a> <br>
-<a href="listProduct">Bài 6,7,8,9</a>
+<a href="listProduct">Bài 6,7,8,9</a> <br>
+<a href="listResume">Bài 10</a>
 </body>
 </html>

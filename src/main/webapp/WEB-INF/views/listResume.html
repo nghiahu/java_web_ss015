@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách CV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .add-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .add-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 107, 107, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .table-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-table thead th {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px 15px;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.95rem;
+            border: none;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .custom-table tbody tr {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #eee;
+        }
+
+        .custom-table tbody tr:hover {
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+            transform: scale(1.01);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .custom-table td {
+            padding: 20px 15px;
+            text-align: center;
+            vertical-align: middle;
+            border: none;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #667eea;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.1);
+            border-color: #ff6b6b;
+        }
+
+        .action-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .edit-btn {
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            color: white;
+            box-shadow: 0 5px 15px rgba(116, 185, 255, 0.3);
+        }
+
+        .edit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(116, 185, 255, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .delete-btn {
+            background: linear-gradient(45deg, #ff7675, #d63031);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 118, 117, 0.3);
+        }
+
+        .delete-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 118, 117, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 80px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .no-data h1 {
+            color: #74b9ff;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .no-data i {
+            font-size: 4rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .custom-table {
+                font-size: 0.9rem;
+            }
+
+            .custom-table td,
+            .custom-table th {
+                padding: 15px 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .add-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+
+            .table-container {
+                padding: 20px;
+                margin: 0 10px;
+            }
+
+            .custom-table {
+                font-size: 0.8rem;
+            }
+
+            .custom-table td,
+            .custom-table th {
+                padding: 12px 8px;
+            }
+
+            .profile-img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .action-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+                margin: 2px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .header {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .table-container {
+                padding: 15px;
+            }
+
+            .custom-table td,
+            .custom-table th {
+                padding: 10px 5px;
+                font-size: 0.75rem;
+            }
+
+            .profile-img {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container > * {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .container > *:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        /* Scrollbar Styling */
+        .table-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .table-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 10px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #5a6fd8, #6a4190);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1><i class="fas fa-file-alt"></i> Danh Sách CV</h1>
+        <a href="addResume" class="add-btn">
+            <i class="fas fa-plus"></i>
+            Thêm CV Mới
+        </a>
+    </div>
+    <div class="table-container">
+        <table class="custom-table">
+            <thead>
+            <tr>
+                <th><i class="fas fa-hashtag"></i> Mã CV</th>
+                <th><i class="fas fa-user"></i> Họ Tên</th>
+                <th><i class="fas fa-image"></i> Hình Ảnh</th>
+                <th><i class="fas fa-envelope"></i> Email</th>
+                <th><i class="fas fa-phone"></i> Số Điện Thoại</th>
+                <th><i class="fas fa-graduation-cap"></i> Trình Độ Học Vấn</th>
+                <th><i class="fas fa-briefcase"></i> Kinh Nghiệm</th>
+                <th><i class="fas fa-cogs"></i> Kỹ Năng</th>
+                <th><i class="fas fa-tools"></i> Hành Động</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tbody>
+            <tr th:each="obj, loop : ${resumes}">
+                <td th:text="${obj.id}"></td>
+                <td th:text="${obj.fullName}"></td>
+                <td><img th:src="${obj.imageUrl}" alt="" class="profile-img"/></td>
+                <td th:text="${obj.email}"></td>
+                <td th:text="${obj.phoneNumber}"></td>
+                <td th:text="${obj.education}"></td>
+                <td th:text="${obj.experience}"></td>
+                <td th:text="${obj.skills}"></td>
+                <td>
+                    <a th:href="@{'updateResume?id=' + ${obj.id}}" class="action-btn edit-btn">
+                        <i class="fas fa-edit"></i> Sửa
+                    </a>
+                    <a th:href="@{'remove-resume?id=' + ${obj.id}}" class="action-btn delete-btn"
+                       onclick="return confirm('Bạn có chắc muốn xóa CV này không?')">
+                        <i class="fas fa-trash"></i> Xóa
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+            </tbody>
+        </table>
+    </div>
+    <div class="no-data" th:if="${resumes.size() == 0}">
+        <i class="fas fa-file-alt"></i>
+        <h1>Chưa có CV nào</h1>
+        <p>Hãy thêm CV đầu tiên của bạn!</p>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

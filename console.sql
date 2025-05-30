@@ -175,3 +175,74 @@ BEGIN
 END //
 DELIMITER ;
 
+create table Resume(
+    id int primary key auto_increment,
+    fullName varchar(100) not null,
+    email varchar(255),
+    phoneNumber char(10),
+    education varchar(255),
+    experience varchar(255),
+    skills varchar(255),
+    image varchar(255)
+);
+
+DELIMITER //
+create procedure saveResume(
+    fullName_in varchar(100),
+    email_in varchar(255),
+    phoneNumber_in char(10),
+    education_in varchar(255),
+    experience_in varchar(255),
+    skills_in varchar(255),
+    image_in varchar(255)
+)
+begin
+    insert into Resume(fullName, email, phoneNumber, education, experience, skills, image)
+        values (fullName_in,email_in,phoneNumber_in,education_in,experience_in,skills_in, image_in);
+end //
+DELIMITER ;
+
+DELIMITER //
+create procedure getAllResume()
+begin
+    select * from Resume;
+end //
+DELIMITER //
+
+DELIMITER //
+create procedure removeResume(id_in int)
+begin
+    delete from Resume where id = id_in;
+end //
+DELIMITER ;
+
+DELIMITER //
+create procedure getResumeById(id_in int)
+begin
+    select * from Resume where id = id_in;
+end //
+DELIMITER ;
+
+DELIMITER //
+create procedure updateResume(
+    id_in int,
+    fullName_in varchar(100),
+    email_in varchar(255),
+    phoneNumber_in char(10),
+    education_in varchar(255),
+    experience_in varchar(255),
+    skills_in varchar(255),
+    image_in varchar(255)
+)
+begin
+    update Resume
+        set fullName = fullName_in,
+            email = email_in,
+            phoneNumber = phoneNumber_in,
+            education = education_in,
+            experience = experience_in,
+            skills = skills_in,
+            image = image_in
+    where id = id_in;
+end //
+DELIMITER ;
